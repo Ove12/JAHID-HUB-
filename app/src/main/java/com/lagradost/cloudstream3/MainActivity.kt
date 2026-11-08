@@ -1228,6 +1228,9 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             com.lagradost.cloudstream3.metaproviders.CrossTmdbProvider.preferredScraperProvider = { title, tmdbId ->
                 com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.getPreferredScraper(title, tmdbId)
             }
+            com.lagradost.cloudstream3.metaproviders.CrossTmdbProvider.preferredDubProvider = { title, tmdbId ->
+                com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.getPreferredDub(title, tmdbId)
+            }
         } catch (_: Throwable) {
         }
 

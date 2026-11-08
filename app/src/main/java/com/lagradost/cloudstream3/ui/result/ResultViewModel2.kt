@@ -2003,6 +2003,15 @@ class ResultViewModel2 : ViewModel() {
     }
 
     fun changeDubStatus(status: DubStatus) {
+        val isDub = status == DubStatus.Dubbed
+        val mediaTitle = currentResponse?.name
+        val tmdbId = currentResponse?.getTMDbId()?.toIntOrNull()
+        com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.savePreferredSource(
+            mediaTitle, tmdbId, null, null, explicitDub = isDub
+        )
+        if (isDub) {
+            com.lagradost.cloudstream3.ui.player.CS3IPlayer.preferredAudioTrackLanguage = "en"
+        }
         postEpisodeRange(
             currentIndex?.copy(dubStatus = status),
             currentRange,

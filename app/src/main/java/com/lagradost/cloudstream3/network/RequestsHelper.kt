@@ -54,6 +54,7 @@ fun buildDefaultClient(context: Context, ignoreSSL: Boolean = false): OkHttpClie
     val baseClient = OkHttpClient.Builder()
         .followRedirects(true)
         .followSslRedirects(true)
+        .addInterceptor(CloudflareKiller)
         .addInterceptor { chain ->
             val req = chain.request()
             val host = req.url.host

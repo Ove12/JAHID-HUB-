@@ -238,8 +238,16 @@ class GeneratorPlayer : FullScreenPlayer() {
             tracks.allVideoTracks.size > 1 || tracks.allAudioTracks.size > 1
         // Only set the preferred language if it is available.
         // Otherwise, it may give some users audio track init failed!
-        if (tracks.allAudioTracks.any { it.language == preferredAudioTrackLanguage }) {
-            player.setPreferredAudioTrack(preferredAudioTrackLanguage)
+        val prefLang = preferredAudioTrackLanguage
+        if (!prefLang.isNullOrBlank()) {
+            val matchingTrack = tracks.allAudioTracks.firstOrNull { track ->
+                track.language?.equals(prefLang, ignoreCase = true) == true ||
+                (prefLang.startsWith("en", ignoreCase = true) && track.language?.startsWith("en", ignoreCase = true) == true) ||
+                (prefLang.contains("eng", ignoreCase = true) && track.label?.contains("eng", ignoreCase = true) == true)
+            }
+            if (matchingTrack != null) {
+                player.setPreferredAudioTrack(matchingTrack.language, matchingTrack.id, matchingTrack.formatIndex)
+            }
         }
         updatePlayerInfo()
     }
@@ -559,11 +567,14 @@ class GeneratorPlayer : FullScreenPlayer() {
             val mediaTitle = getCurrentMediaTitle() ?: load?.name ?: (currentMeta as? ResultEpisode)?.headerName ?: (currentMeta as? ResultEpisode)?.name
             val scraperName = link.first?.source
             val serverName = link.first?.name ?: link.second?.name
+            val detectedDub = com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.isDubIndicator(serverName)
+                ?: com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.isDubIndicator(scraperName)
             com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.savePreferredSource(
                 title = mediaTitle,
                 id = tmdbId,
                 scraper = scraperName,
-                serverName = serverName
+                serverName = serverName,
+                explicitDub = detectedDub
             )
         }
         //  setEpisodes(viewModel.getAllMeta() ?: emptyList())
@@ -1695,6 +1706,17 @@ class GeneratorPlayer : FullScreenPlayer() {
 
                 binding.applyBtt.setOnClickListener {
                     val currentTrack = currentAudioTracks.getOrNull(audioIndexStart)
+                    currentTrack?.language?.let { lang ->
+                        preferredAudioTrackLanguage = lang
+                        if (lang.startsWith("en", ignoreCase = true) || lang.contains("eng", ignoreCase = true)) {
+                            val mediaTitle = getCurrentMediaTitle()
+                            val load = viewModel.state.generatorState?.response ?: (viewModel.generator as? RepoLinkGenerator)?.page
+                            val tmdbId = load?.getTMDbId()?.toIntOrNull()
+                            com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.savePreferredSource(
+                                mediaTitle, tmdbId, null, null, explicitDub = true
+                            )
+                        }
+                    }
                     player.setPreferredAudioTrack(
                         currentTrack?.language,
                         currentTrack?.id,
@@ -1787,20 +1809,23 @@ class GeneratorPlayer : FullScreenPlayer() {
         val mediaTitle = getCurrentMediaTitle() ?: load?.name ?: (currentMeta as? ResultEpisode)?.headerName ?: (currentMeta as? ResultEpisode)?.name
         val prefScraper = com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.getPreferredScraper(mediaTitle, tmdbId)
         val prefServer = com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.getPreferredServer(mediaTitle, tmdbId)
+        val prefDub = com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.getPreferredDub(mediaTitle, tmdbId)
 
         val firstAvailableLink = if (!hostStreamUrl.isNullOrBlank()) {
             links.firstOrNull { it.shouldUseLink && it.link.first?.url == hostStreamUrl }?.link
                 ?: links.firstOrNull { it.shouldUseLink }?.link
         } else {
-            val preferredMatch = if (!prefScraper.isNullOrBlank() || !prefServer.isNullOrBlank()) {
+            val preferredMatch = if (!prefScraper.isNullOrBlank() || !prefServer.isNullOrBlank() || prefDub != null) {
                 links.filter {
-                    it.shouldUseLink && com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.matchesPreferred(it.link, prefScraper, prefServer)
+                    it.shouldUseLink && com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.matchesPreferred(it.link, prefScraper, prefServer, prefDub)
                 }.maxByOrNull {
-                    com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.matchScore(it.link, prefScraper, prefServer)
+                    com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.matchScore(it.link, prefScraper, prefServer, prefDub)
                 }?.link
             } else null
 
-            preferredMatch ?: links.firstOrNull { it.shouldUseLink }?.link
+            preferredMatch
+                ?: (if (prefDub != null) links.firstOrNull { it.shouldUseLink && com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.isDubIndicator(it.link.first?.name ?: it.link.second?.name) == prefDub }?.link else null)
+                ?: links.firstOrNull { it.shouldUseLink }?.link
         }
         if (firstAvailableLink == null) {
             noLinksFound()
@@ -2960,10 +2985,11 @@ class GeneratorPlayer : FullScreenPlayer() {
                     val mediaTitle = getCurrentMediaTitle() ?: load?.name ?: (currentMeta as? ResultEpisode)?.headerName ?: (currentMeta as? ResultEpisode)?.name
                     val prefScraper = com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.getPreferredScraper(mediaTitle, tmdbId)
                     val prefServer = com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.getPreferredServer(mediaTitle, tmdbId)
+                    val prefDub = com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.getPreferredDub(mediaTitle, tmdbId)
 
-                    if (!prefScraper.isNullOrBlank() || !prefServer.isNullOrBlank()) {
+                    if (!prefScraper.isNullOrBlank() || !prefServer.isNullOrBlank() || prefDub != null) {
                         val hasPreferred = sortedLinks.any {
-                            it.shouldUseLink && com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.matchesPreferred(it.link, prefScraper, prefServer)
+                            it.shouldUseLink && com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.matchesPreferred(it.link, prefScraper, prefServer, prefDub)
                         }
                         if (hasPreferred) {
                             startPlayer()

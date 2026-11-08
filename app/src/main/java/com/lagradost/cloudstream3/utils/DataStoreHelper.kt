@@ -786,6 +786,18 @@ object DataStoreHelper {
         setKey("$currentAccount/$RESULT_DUB", id.toString(), status.ordinal)
     }
 
+    private const val PREFERRED_AUDIO_TRACK_LANG = "preferred_audio_track_lang"
+
+    var preferredAudioLanguage: String?
+        get() = getKey<String>("$currentAccount/$PREFERRED_AUDIO_TRACK_LANG")
+        set(value) {
+            if (value != null) {
+                setKey("$currentAccount/$PREFERRED_AUDIO_TRACK_LANG", value)
+            } else {
+                removeKey("$currentAccount/$PREFERRED_AUDIO_TRACK_LANG")
+            }
+        }
+
     fun setResultWatchState(id: Int?, status: Int) {
         if (id == null) return
         if (status == WatchType.NONE.internalId) {

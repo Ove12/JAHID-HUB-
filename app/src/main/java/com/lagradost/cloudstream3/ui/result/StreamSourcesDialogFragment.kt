@@ -620,12 +620,21 @@ class StreamSourcesDialogFragment : DialogFragment() {
                     ?: Regex("tmdbID=(\\d+)").find(d)?.groupValues?.get(1)?.toIntOrNull()
             }
         val mediaTitle = currentResponse?.name ?: episode.headerName ?: episode.name
+        val detectedDub = com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.isDubIndicator(selectedLink.name)
+            ?: com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.isDubIndicator(selectedLink.source)
         com.lagradost.cloudstream3.utils.MediaSourcePreferenceHelper.savePreferredSource(
             title = mediaTitle,
             id = tmdbId,
             scraper = selectedLink.source,
-            serverName = selectedLink.name
+            serverName = selectedLink.name,
+            explicitDub = detectedDub
         )
+
+        if (detectedDub == true) {
+            com.lagradost.cloudstream3.ui.player.CS3IPlayer.preferredAudioTrackLanguage = "en"
+        } else if (detectedDub == false) {
+            com.lagradost.cloudstream3.ui.player.CS3IPlayer.preferredAudioTrackLanguage = "ja"
+        }
 
         // 1. Populate RepoLinkGenerator.cache with selected link first!
         synchronized(RepoLinkGenerator.cache) {

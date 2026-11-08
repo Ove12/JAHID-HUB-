@@ -120,6 +120,20 @@ class CrossTmdbProvider : TmdbProvider() {
 
             var score = 0
 
+            val prefDub = preferredDubProvider?.invoke(rawTitle, null)
+            if (prefDub != null) {
+                val itemHasDub = itemRawName.contains("dub", ignoreCase = true)
+                if (prefDub && itemHasDub) {
+                    score += 45
+                } else if (prefDub && !itemHasDub) {
+                    score -= 25
+                } else if (!prefDub && itemHasDub) {
+                    score -= 45
+                } else if (!prefDub && !itemHasDub) {
+                    score += 15
+                }
+            }
+
             // Title Similarity Scoring
             if (isExact) {
                 score = 100
@@ -201,6 +215,7 @@ class CrossTmdbProvider : TmdbProvider() {
         var scraperListener: ScraperListener? = null
         var forceSearchAll: Boolean = false
         var preferredScraperProvider: ((mediaTitle: String?, tmdbId: Int?) -> String?)? = null
+        var preferredDubProvider: ((mediaTitle: String?, tmdbId: Int?) -> Boolean?)? = null
 
         fun isAnimeApiStatic(api: com.lagradost.cloudstream3.MainAPI): Boolean {
             val types = api.supportedTypes
@@ -618,6 +633,11 @@ class CrossTmdbProvider : TmdbProvider() {
                     searchQueries.add("$title Season $season")
                     searchQueries.add("$title S$season")
                     searchQueries.add("$title $season")
+                }
+                val prefDub = preferredDubProvider?.invoke(title, null)
+                if (prefDub == true) {
+                    searchQueries.add("$title (Dub)")
+                    searchQueries.add("$title Dub")
                 }
                 searchQueries.add(title)
                 if (title.contains("&")) {
