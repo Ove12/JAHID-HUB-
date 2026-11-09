@@ -100,7 +100,7 @@ object RepositoryManager {
     const val ONLINE_PLUGINS_FOLDER = "Extensions"
     const val DEFAULT_REPOSITORY_URL = "https://joyflix-api.jehadjoy69.workers.dev/repo.json"
     val DEFAULT_REPOSITORY = RepositoryData(
-        name = "JoyFlix Official",
+        name = "JAHID HUB Official",
         url = DEFAULT_REPOSITORY_URL
     )
 
@@ -138,8 +138,8 @@ object RepositoryManager {
         val fixedUrl = url.trim()
         return if (fixedUrl.contains("^https?://".toRegex())) {
             fixedUrl
-        } else if (fixedUrl.contains("^(joyflixrepo://)|(cloudstreamrepo://)|(https://cs\\.repo/\\??)".toRegex())) {
-            fixedUrl.replace("^(joyflixrepo://)|(cloudstreamrepo://)|(https://cs\\.repo/\\??)".toRegex(), "").let {
+        } else if (fixedUrl.contains("^(jahidhubrepo://)|(joyflixrepo://)|(cloudstreamrepo://)|(https://cs\\.repo/\\??)".toRegex())) {
+            fixedUrl.replace("^(jahidhubrepo://)|(joyflixrepo://)|(cloudstreamrepo://)|(https://cs\\.repo/\\??)".toRegex(), "").let {
                 return@let if (!it.contains("^https?://".toRegex()))
                     "https://${it}"
                 else fixedUrl
@@ -279,7 +279,7 @@ object RepositoryManager {
                 val dummyRepo = Repository(
                     iconUrl = repositoryData.iconUrl,
                     name = repositoryData.name,
-                    description = "JoyFlix Extensions",
+                    description = "JAHID HUB Extensions",
                     manifestVersion = 1,
                     pluginLists = listOf(repositoryData.url)
                 )

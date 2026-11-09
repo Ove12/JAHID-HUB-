@@ -132,17 +132,17 @@ abstract class AccountManager {
             SyncRepo(localListApi)
         )
 
-        const val APP_STRING = "joyflixapp"
-        const val APP_STRING_REPO = "joyflixrepo"
-        const val APP_STRING_PLAYER = "joyflixplayer"
+        const val APP_STRING = "jahidhubapp"
+        const val APP_STRING_REPO = "jahidhubrepo"
+        const val APP_STRING_PLAYER = "jahidhubplayer"
 
         // Instantly start the search given a query
-        const val APP_STRING_SEARCH = "joyflixsearch"
+        const val APP_STRING_SEARCH = "jahidhubsearch"
 
         // Instantly resume watching a show
-        const val APP_STRING_RESUME_WATCHING = "joyflixcontinuewatching"
+        const val APP_STRING_RESUME_WATCHING = "jahidhubcontinuewatching"
 
-        const val APP_STRING_SHARE = "joyflixshare"
+        const val APP_STRING_SHARE = "jahidhubshare"
 
         fun secondsToReadable(seconds: Int, completedValue: String): String {
             var secondsLong = seconds.toLong()

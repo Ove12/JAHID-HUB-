@@ -304,7 +304,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
                         println("Repository url: $realUrl")
                         loadRepository(realUrl)
                         return true
-                    } else if (str.contains(APP_STRING) || str.contains("cloudstreamapp") || str.contains("joyflix.fun")) {
+                    } else if (str.contains(APP_STRING) || str.contains("joyflixapp") || str.contains("cloudstreamapp") || str.contains("joyflix.fun")) {
                         for (api in AccountManager.allApis) {
                             if (api.isValidRedirectUrl(str)) {
                                 ioSafe {

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="player_speed_text_format" formatted="true">السرعة (%.2fx)</string>
     <string name="home_change_provider_img_des">غير المصدر</string>
@@ -139,7 +139,7 @@
     <string name="category_updates">التجديدات وال نسخات الاحتياطية</string>
     <string name="pref_filter_search_quality">خبي هيدي الجودات من نتايج التنبيش</string>
     <string name="type_on_hold">موقف موقتًا</string>
-    <string name="app_name">كلود ستريم</string>
+    <string name="app_name">JAHID HUB</string>
     <string name="player_size_settings_des">شيل الأسود من الأطراف</string>
     <string name="season_short">ج</string>
     <string name="apk_installer_settings">طريقة تجديد الآپ</string>

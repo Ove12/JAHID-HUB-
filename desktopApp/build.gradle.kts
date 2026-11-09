@@ -34,7 +34,7 @@ compose.desktop {
         mainClass = "com.lagradost.cloudstream4.MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "JoyFlix"
+            packageName = "JahidHub"
             packageVersion = "1.0.0"
 
             val iconsRoot = project.file("desktop-icons")

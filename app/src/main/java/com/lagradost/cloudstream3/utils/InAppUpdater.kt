@@ -42,7 +42,7 @@ object InAppUpdater {
     private const val ANDROID_UPDATER_URL = "https://version.jehadjoy69.workers.dev/android"
     private const val NOTICE_URL = "https://version.jehadjoy69.workers.dev/notice"
 
-    private const val PRERELEASE_PACKAGE_NAME = "com.joyflix.app.prerelease"
+    private const val PRERELEASE_PACKAGE_NAME = "com.jahidhub.app.prerelease"
     private const val LOG_TAG = "InAppUpdater"
 
     fun isVersionNewer(remoteVersion: String?, currentVersion: String?): Boolean {

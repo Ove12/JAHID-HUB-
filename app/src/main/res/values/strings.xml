@@ -28,17 +28,17 @@
     <string name="new_update_format" formatted="true">New update found!\n%1$s -&gt; %2$s</string>
     <string name="filler" formatted="true">Filler</string>
     <string name="duration_format" formatted="true">%d min</string>
-    <string name="app_name">JOYFLIX</string>
-    <string name="play_with_app_name">Play with JOYFLIX</string>
+    <string name="app_name">JAHID HUB</string>
+    <string name="play_with_app_name">Play with JAHID HUB</string>
     <string name="title_home">Home</string>
     <string name="title_search">Search</string>
     <string name="title_downloads">Downloads</string>
     <string name="download_queue">Download queue</string>
     <string name="title_settings">Settings</string>
-    <string name="search_hint">Search‚Ä¶</string>
-    <string name="search_hint_site" formatted="true">Search %s‚Ä¶</string>
+    <string name="search_hint">SearchÖ</string>
+    <string name="search_hint_site" formatted="true">Search %sÖ</string>
     <string name="speech_recognition_unavailable">Speech recognition is not available</string>
-    <string name="begin_speaking">Begin Speaking‚Ä¶</string>
+    <string name="begin_speaking">Begin SpeakingÖ</string>
     <string name="no_data">No Data</string>
     <string name="episode_more_options_des">More Options</string>
     <string name="next_episode">Next episode</string>
@@ -47,7 +47,7 @@
     <string name="result_open_in_browser">Open In Browser</string>
     <string name="browser">Browser</string>
     <string name="skip_loading">Skip Loading</string>
-    <string name="loading">Loading‚Ä¶</string>
+    <string name="loading">LoadingÖ</string>
     <string name="type_watching">Watching</string>
     <string name="type_on_hold">On-Hold</string>
     <string name="type_completed">Completed</string>
@@ -62,7 +62,7 @@
     <string name="torrent_info">This video is a Torrent, this means that your video activity can be tracked.\nMake sure you understand Torrenting before continuing.</string>
     <string name="pick_source">Sources</string>
     <string name="pick_subtitle">Subtitles</string>
-    <string name="reload_error">Retry connection‚Ä¶</string>
+    <string name="reload_error">Retry connectionÖ</string>
     <string name="go_back">Go Back</string>
     <string name="play_episode">Play Episode</string>
     <!--<string name="need_storage">Allow to download episodes</string>-->
@@ -140,8 +140,8 @@
     <string name="torrent_plot">Description</string>
     <string name="normal_no_plot">No Plot Found</string>
     <string name="torrent_no_plot">No Description Found</string>
-    <string name="show_log_cat">Show Logcat üêà</string>
-    <string name="log_cat">Logcat üêà</string>
+    <string name="show_log_cat">Show Logcat ??</string>
+    <string name="log_cat">Logcat ??</string>
     <string name="test_log">Log</string>
     <string name="picture_in_picture">Picture-in-picture</string>
     <string name="picture_in_picture_des">Continues playback in a miniature player on top of other apps</string>
@@ -350,7 +350,7 @@
     <string name="dns_pref">DNS over HTTPS</string>
     <string name="dns_pref_summary">Useful for bypassing ISP blocks</string>
     <string name="jsdelivr_proxy">GitHub Proxy</string>
-    <string name="jsdelivr_enabled">Could not reach GitHub. Turning on jsDelivr proxy‚Ä¶</string>
+    <string name="jsdelivr_enabled">Could not reach GitHub. Turning on jsDelivr proxyÖ</string>
     <string name="jsdelivr_proxy_summary">Bypass blocking of raw github URLs using jsDelivr. May cause updates to be delayed by few days.</string>
     <string name="add_site_pref">Clone site</string>
     <string name="remove_site_pref">Remove site</string>
@@ -462,7 +462,7 @@
     <string name="actor_background">Background</string>
     <string name="home_source">Source</string>
     <string name="home_random">Random</string>
-    <string name="coming_soon">Coming soon‚Ä¶</string>
+    <string name="coming_soon">Coming soonÖ</string>
     <string name="quality_cam">Cam</string>
     <string name="quality_cam_rip">CamRip</string>
     <string name="quality_cam_hd">CamHD</string>
@@ -513,7 +513,7 @@
     <string name="plugin_deleted">Plugin Deleted</string>
     <string name="plugin_load_fail" formatted="true">Could not load %s</string>
     <string name="is_adult">18+</string>
-    <string name="batch_download_start_format" formatted="true">Started downloading %1$d %2$s‚Ä¶</string>
+    <string name="batch_download_start_format" formatted="true">Started downloading %1$d %2$sÖ</string>
     <string name="batch_download_finish_format" formatted="true">Downloaded %1$d %2$s</string>
     <string name="batch_download_nothing_to_download_format" formatted="true">All %s already downloaded</string>
     <string name="no_plugins_found_error">No plugins found in repository</string>
@@ -529,11 +529,11 @@
     <string name="plugins_disabled" formatted="true">Disabled: %d</string>
     <string name="plugins_not_downloaded" formatted="true">Not downloaded: %d</string>
     <string name="plugins_updated" formatted="true">Updated %d plugins</string>
-    <string name="blank_repo_message">Welcome to JoyFlix! You can add extension repositories from Settings &gt; Extensions to start browsing content.</string>
+    <string name="blank_repo_message">Welcome to JAHID HUB! You can add extension repositories from Settings &gt; Extensions to start browsing content.</string>
     <string name="view_public_repositories_button">View community repositories</string>
     <string name="view_public_repositories_button_short">Public list</string>
     <string name="uppercase_all_subtitles">Uppercase all subtitles</string>
-    <string name="download_all_plugins_from_repo">Warning: JoyFlix does not take any responsibility for third-party extensions.</string>
+    <string name="download_all_plugins_from_repo">Warning: JAHID HUB does not take any responsibility for third-party extensions.</string>
     <string name="single_plugin_disabled" formatted="true">%s (Disabled)</string>
     <string name="tracks">Tracks</string>
     <string name="audio_tracks">Audio tracks</string>
@@ -585,13 +585,13 @@
     <string name="open_downloaded_repo">Open repository</string>
     <string name="battery_dialog_title">Disable Battery optimization</string>
     <string name="battery_dialog_message">To ensure uninterrupted downloads and notifications for subscribed
-        shows, JoyFlix needs permission to run in background. By pressing "OK", you\'ll be shown a request dialog.
+        shows, JAHID HUB needs permission to run in background. By pressing "OK", you\'ll be shown a request dialog.
         Please press \'Allow\'.\n\nPlease note, this permission will only operate in the background when necessary, such as
         when receiving notifications or downloading videos.</string>
     <string name="app_unrestricted_toast">App battery usage is already set to unrestricted</string>
-    <string name="app_info_intent_error">Unable to open JoyFlix\'s App info.</string>
-    <string name="update_notification_downloading">Downloading app update‚Ä¶</string>
-    <string name="update_notification_installing">Installing app update‚Ä¶</string>
+    <string name="app_info_intent_error">Unable to open JAHID HUB\'s App info.</string>
+    <string name="update_notification_downloading">Downloading app updateÖ</string>
+    <string name="update_notification_installing">Installing app updateÖ</string>
     <string name="update_notification_failed">Could not install the new version of the app</string>
     <string name="apk_installer_legacy">Legacy</string>
     <string name="apk_installer_package_installer">PackageInstaller</string>
@@ -699,15 +699,15 @@
     <string name="favorite">Favorite</string>
     <string name="unfavorite">Unfavorite</string>
     <!-- For Biometrics -->
-    <string name="biometric_authentication_title">Unlock JoyFlix</string>
+    <string name="biometric_authentication_title">Unlock JAHID HUB</string>
     <string name="biometric_setting">Lock with Biometrics</string>
     <string name="password_pin_authentication_title">Password/PIN Authentication</string>
     <string name="biometric_unsupported">Biometric authentication is not supported on this device</string>
     <string name="biometric_setting_summary">Unlock the app with Fingerprint, Face ID, PIN, Pattern and Password.</string>
     <string name="biometric_prompt_description">After a few failed attempts, the prompt will close. Simply restart the app to try again.</string>
-    <string name="biometric_warning">Your JoyFlix data has been backed up now. Although the possibility of this is very low, all devices can behave differently. In the rare case, that you get locked out from accessing the app, clear the app data completely and restore from a backup. We are very sorry for any inconvenience arising from this.</string>
+    <string name="biometric_warning">Your JAHID HUB data has been backed up now. Although the possibility of this is very low, all devices can behave differently. In the rare case, that you get locked out from accessing the app, clear the app data completely and restore from a backup. We are very sorry for any inconvenience arising from this.</string>
     <string name="reset_btn">Reset</string>
-    <string name="cs3wiki">JoyFlix Docs</string>
+    <string name="cs3wiki">JAHID HUB Docs</string>
     <string name="device_pin_url_message">Visit <b>%s</b> on your smartphone or computer and enter the above code</string>
     <string name="device_pin_error_message">Can\'t get the device PIN code, try local authentication</string>
     <string name="device_pin_expired_message">PIN code is now expired !</string>
@@ -833,10 +833,10 @@
     <string name="voice_call">Voice</string>
     <string name="voice_chat">Voice Chat</string>
     <string name="voice_turn_on">Turn ON</string>
-    <string name="voice_status_live">‚óè Live ‚Ä¢ Noise Suppressed</string>
+    <string name="voice_status_live">? Live ï Noise Suppressed</string>
     <string name="voice_join_room_first">Join or create a Watch Party room first to talk!</string>
     <string name="mic_on">Mic ON</string>
     <string name="mic_off">Mic OFF</string>
-    <string name="mic_turned_on">Mic is ON ‚Äî Friends can hear you</string>
+    <string name="mic_turned_on">Mic is ON ó Friends can hear you</string>
     <string name="mic_turned_off">Mic is Muted (OFF)</string>
 </resources>

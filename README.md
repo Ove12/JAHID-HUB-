@@ -1,6 +1,6 @@
-# JoyFlix 🎬
+# JAHID HUB 🎬
 
-JoyFlix is a modern, privacy-focused, and extensible media streaming application for Android phones, tablets, and Android TV.
+JAHID HUB is a modern, privacy-focused, and extensible media streaming application for Android phones, tablets, and Android TV.
 
 ---
 
@@ -15,6 +15,6 @@ JoyFlix is a modern, privacy-focused, and extensible media streaming application
 ---
 
 ### Getting Started:
-1. Open JoyFlix on your Android device.
+1. Open JAHID HUB on your Android device.
 2. Navigate to **Settings > Extensions** to add your preferred extension repositories.
 3. Browse and enjoy!

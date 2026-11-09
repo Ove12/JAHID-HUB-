@@ -86,10 +86,11 @@ android {
 
     signingConfigs {
         create("release") {
-            storeFile = rootProject.file("release.jks")
-            storePassword = "joyflix123456"
-            keyAlias = "joyflix"
-            keyPassword = "joyflix123456"
+            val jks = if (rootProject.file("jahidhub.jks").exists()) rootProject.file("jahidhub.jks") else if (rootProject.file("release.jks").exists()) rootProject.file("release.jks") else null
+            storeFile = jks
+            storePassword = if (rootProject.file("jahidhub.jks").exists()) "jahidhub123" else "joyflix123456"
+            keyAlias = if (rootProject.file("jahidhub.jks").exists()) "jahidhub" else "joyflix"
+            keyPassword = if (rootProject.file("jahidhub.jks").exists()) "jahidhub123" else "joyflix123456"
         }
         // We just use SIGNING_KEY_ALIAS here since it won't change
         // so won't kill the configuration cache.
@@ -109,7 +110,7 @@ android {
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "com.joyflix.app"
+        applicationId = "com.jahidhub.app"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
         versionCode = libs.versions.versionCode.get().toInt()
@@ -158,7 +159,7 @@ android {
             isDebuggable = false
             isMinifyEnabled = false
             isShrinkResources = false
-            signingConfig = signingConfigs.getByName("release")
+            signingConfig = if (signingConfigs.getByName("release").storeFile?.exists() == true) signingConfigs.getByName("release") else signingConfigs.getByName("debug")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
