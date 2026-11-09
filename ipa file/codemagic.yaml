@@ -5,27 +5,28 @@ workflows:
     max_build_duration: 30
     environment:
       xcode: latest
-      cocoapods: default
     scripts:
-      - name: Build IPA Archive
+      - name: Build and Package IPA
         script: |
-          cd "ipa file"
-          xcodebuild clean archive \
-            -project JahidHub.xcodeproj \
+          set -e
+          echo "Building JahidHub for iOS..."
+          xcodebuild clean build \
+            -project "ipa file/JahidHub.xcodeproj" \
             -scheme JahidHub \
             -configuration Release \
-            -archivePath "$CM_BUILD_DIR/JahidHub.xcarchive" \
-            CODE_SIGNING_ALLOWED=NO \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath "$CM_BUILD_DIR/derivedData" \
+            CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
-            CODE_SIGN_IDENTITY=""
+            CODE_SIGNING_ALLOWED=NO
 
-      - name: Package IPA for Sideloading
-        script: |
+          echo "Packaging into IPA..."
           mkdir -p "$CM_BUILD_DIR/Payload"
-          cp -r "$CM_BUILD_DIR/JahidHub.xcarchive/Products/Applications/JahidHub.app" "$CM_BUILD_DIR/Payload/"
+          cp -r "$CM_BUILD_DIR/derivedData/Build/Products/Release-iphoneos/JahidHub.app" "$CM_BUILD_DIR/Payload/"
           cd "$CM_BUILD_DIR"
-          zip -r "JahidHub-v1.0.0.ipa" Payload
+          zip -qr "JahidHub-v1.0.0.ipa" Payload
           mkdir -p build/ios/ipa
           mv "JahidHub-v1.0.0.ipa" build/ios/ipa/
+          echo "IPA successfully created at build/ios/ipa/JahidHub-v1.0.0.ipa"
     artifacts:
       - build/ios/ipa/*.ipa
